@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
 
+
 function App() {
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com',
+      'X-RapidAPI-Key': 'd8818fa09emshcd4bed22312084fp14331djsn23e53f613ef5'
+    }
+  };
+  
+  fetch('https://online-movie-database.p.rapidapi.com/auto-complete?q=game%20of%20thr', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+    
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
