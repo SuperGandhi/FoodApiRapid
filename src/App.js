@@ -49,14 +49,16 @@ function App() {
          <input type="text" value={query} onChange={onChangeHandler}/>
          <button type='submit'>Submit</button>
        </form>
+       <div className="element">
        {container.map((item)=> {
          return (
-           <div>
+           <div className="element-div">
              <img src={item.food.image} alt="" />
              <p>{item.food.label}</p>
            </div>
          ) 
        })}
+       </div>
     </div>
   );
 }
