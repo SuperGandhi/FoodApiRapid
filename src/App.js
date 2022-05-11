@@ -31,7 +31,7 @@ function App() {
       })
       .then(response => console.log(response))
       .catch(err => console.error(err));
-},[endPoint])
+},[query])
       
       const onChangeHandler = (e) =>{
         setQuery(e.target.value)
