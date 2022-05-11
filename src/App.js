@@ -1,58 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import './App.css';
 // import axios from "axios";
 
 
 
 
+
+
 function App() {
-  const [endPoint, setEndPoints]= useState('')
-  const [container, setContainer] = useState([])
-
-  useEffect(() => {
-    fethMe()
-  },[endPoint])
-
-  const fethMe = () =>{
+  
+  const [query, setQuery] = useState('')
+  const [container,setContainer] = useState([])
+  
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com',
-      'X-RapidAPI-Key': '490574ce41mshbca8c481c71683bp1f17e6jsn17e91bcc55ac'
+      'X-RapidAPI-Host': 'edamam-food-and-grocery-database.p.rapidapi.com',
+      'X-RapidAPI-Key': 'd8818fa09emshcd4bed22312084fp14331djsn23e53f613ef5'
     }
   };
   
-  fetch(`https://online-movie-database.p.rapidapi.com/auto-complete?q+${endPoint}`, options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .then(data => {
-      setContainer(data)
+  fetch('https://edamam-food-and-grocery-database.p.rapidapi.com/parser?ingr=apple', options)
+    .then(response => {
+      return response.json();
     })
+    .then(data =>{
+      setContainer(data.hints)
+    })
+    .then(response => console.log(response))
     .catch(err => console.error(err));
-}
 
-  const onChangeHandler = (e)=>{
-    setEndPoints(e.target.value)
-  }
 
-  const submitHandler = (e) =>{
-    e.preventDefault();
-  }
-
-  return (
-    <div className="App">
-      <form onSubmit={submitHandler}>
-        <input type="text" value={endPoint} onChange={onChangeHandler}/>
-        <button type="submit">submit</button>
-      </form>
-      {container.map((item) => {
-        return (
-          <div>
-            <img src={item.i.imageUrl} alt="" />
-            <p>{item.l}</p>
-          </div>
-        )
-      })}
+  
+  return(
+    <div>
+       <form action="">
+         <input type="text" />
+         <button type='submit'>Submit</button>
+       </form>
     </div>
   );
 }
